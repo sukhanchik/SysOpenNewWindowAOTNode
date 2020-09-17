@@ -49,7 +49,7 @@
 ## ChangeLog
 
 * [CHANGELOG.md](CHANGELOG.md)
-* <https://github.com/mazzy-ax/SysOpenNewWindowAOTNode/releases>
+* <https://github.com/sukhanchik/SysOpenNewWindowAOTNode/releases>
 
 
 Суханов Владимир <sukhanchik@yandex.ru>
