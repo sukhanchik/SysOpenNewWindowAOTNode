@@ -1,0 +1,25 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FTM
+
+; Microsoft Dynamics AX MENUITEM : SysOpenNewWindowAOTNode unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MENUITEM #SysOpenNewWindowAOTNode
+    Type: 3
+    PROPERTIES
+      Name                #SysOpenNewWindowAOTNode
+      Label               #Открыть используемый объект
+      HelpText            #Открыть используемый объект
+      ObjectType          #Class
+      Object              #SysOpenNewWindowAOTNode
+      ConfigurationKey    #SysDevelopmentXPP
+      Origin              #{A34AC276-D6B4-4701-B228-1D8603D02F69}
+    ENDPROPERTIES
+    
+  ENDMENUITEM
+  
+
+***Element: END

@@ -1,0 +1,744 @@
+﻿// VSUH, Класс, открывающий используемый элемент 15.11.2005
+class SysOpenNewWindowAOTNode extends SysOpenNewWindowApplObject
+{
+
+    void runsysContextMenu(SysContextMenu _sysContextMenu)
+    {
+        TreeNode aNode = _sysContextMenu.first();
+        TreeNode treeNodeToOpen;
+
+        while (aNode)    // only single....?!
+        {
+            treeNodeToOpen = this.usingTreeNode(aNode);
+
+            if (!treeNodeToOpen)
+            {
+                treeNodeToOpen = aNode;
+            }
+            treeNodeToOpen.AOTnewWindow();
+
+            aNode = _sysContextMenu.next();
+        }
+    }
+
+    TreeNode usingTreeNode(TreeNode _treeNode)
+    {
+        TreeNode ret;
+
+        ret = SysOpenNewWindowAOTNode::getUsedByNode(_treeNode);
+
+        return ret;
+    }
+
+    // VSUH, Поиск узла по пути и типу узла (для нахождения узлов с одинаковыми именами) 17.11.2005
+    static TreeNode findNode(str _path, int _nodeType = 0)
+    {
+        TreeNode     treeNode, treeNodeParent, treeNodeChild;
+        TreeNodeIterator it;
+        ;
+
+        treeNode = TreeNode::findNode(_path);
+        if (_nodeType && treeNode.treeNodeType().id() != _nodeType)
+        {
+            treeNodeParent = treeNode.AOTparent();
+            it = treeNodeParent.AOTiterator();
+            treeNodeChild = it.next();
+            while (treeNodeChild)
+            {
+                if (treeNodeChild.treeNodeName() == treeNode.treeNodeName() &&
+                    treeNodeChild.treeNodeType().id()  == _nodeType)
+                {
+                    treeNode = treeNodeChild;
+                    break;
+                }
+                treeNodeChild = it.next();
+            }
+        }
+        return treeNode;
+    }
+
+    // VSUH Поиск или открытие окна AOT
+    public static void findOrOpenAOTWindow(TreeNode _node)
+    {
+        HWND AxClient, AxChild;
+        ;
+        AxClient = WinApi::findWindowEx(infolog.hWnd(), 0, "MDIClient", "");
+        AxChild = WinApi::findWindowEx(AxClient, nullvalue(AxChild), "", _node.treeNodePath());
+        if (AxChild != 0)
+        {
+            infolog.activateWindow(AxChild);
+        }
+        else
+        {
+            _node.AOTnewWindow();
+        }
+    }
+
+    private static container findSSRSModelProject(str _ssrsReportName)
+    {
+        TreeNode treeNode;
+        VSProjectNode projectNode;
+        container reportReferences;
+        VSProjectFileNode projectFileNode;
+        str source, xpath, reportReference;
+        int pos, len;
+
+        System.IO.StringReader reader;
+        System.Xml.XPath.XPathDocument doc;
+        System.Xml.XPath.XPathNavigator navigator, nodeNavigator;
+        System.Xml.XPath.XPathExpression expression;
+        System.Xml.XPath.XPathNodeIterator nodeIterator;
+        System.Xml.XmlNamespaceManager namespaceManager;
+        #AOT
+
+        // Key is VSProjectNode
+        // Value is Set of strings - AOT paths to the SSRS reports used in the project
+
+        treeNode = TreeNode::findNode(#VSProjectsAXModelPath);
+        if (treeNode)
+        {
+            projectNode = treeNode.AOTfirstChild();
+            while (projectNode)
+            {
+                // check for the Project node, the Project Content node and a project file node
+                if (projectNode && projectNode.aoTfirstChild() && projectNode.aoTfirstChild().AOTfirstChild())
+                {
+                    projectFileNode = projectNode.aoTfirstChild().AOTfirstChild();
+                    source = projectFileNode.AOTgetSource();
+                    len = strLen(source);
+                    if (len)
+                    {
+                        // remove any unwanted characters from the beginning of the string
+                        pos = strFind(source, @"<", 1, len);
+                        if (source && pos)
+                        {
+                            source = subStr(source, pos, len);
+                        }
+
+                        if (source)
+                        {
+                            // load the source into an XPathDocument object and find all report references using xpath select
+                            reader = new System.IO.StringReader(source);
+                            doc = new System.Xml.XPath.XPathDocument(reader);
+                            navigator = doc.CreateNavigator();
+
+                            namespaceManager = new System.Xml.XmlNamespaceManager(navigator.get_NameTable());
+                            namespaceManager.AddNamespace(@"msbuild", @"http://schemas.microsoft.com/developer/msbuild/2003");
+
+                            xpath = @"//msbuild:Project/msbuild:ItemGroup/msbuild:Compile/@Include";
+                            expression = System.Xml.XPath.XPathExpression::Compile(xpath);
+                            expression.SetContext(namespaceManager);
+
+                            nodeIterator = navigator.Select(expression);
+                            if (nodeIterator)
+                            {
+                                while (nodeIterator.MoveNext())
+                                {
+                                    nodeNavigator = nodeIterator.get_Current();
+                                    reportReference = nodeNavigator.get_Value();
+
+                                    if (reportReference && reportReference == _ssrsReportName)
+                                    {
+                                        reportReferences += projectNode.treeNodePath();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                projectNode = projectNode.aoTnextSibling();
+            }
+        }
+        return reportReferences;
+    }
+
+    // VSUH Открыть используемую ... (форму, класс и т.д.) Возвращает NULL, если нет соотв узла в АОТ 24.04.2005
+    public static TreeNode getUsedByNode(TreeNode _curNode)
+    {
+        TreeNode             retNode, tmpNode;
+        TreeNodeName         treeNodeName;
+        str                  dsName;
+        str                  methodName;
+        str                  fieldName;
+        str                  groupName;
+        str                  typeName;
+        MenuFunction         menuFunction;
+        SysDictClass         dictClass;
+        SysDictField         dictField;
+        SysDictType          dictType, dictParentType;
+        SysDictEnum          dictEnum;
+        SysDictTable         dictTable;
+        DictSecurityKey      dictSecurityKey, parentSecurityKey;
+        DictConfigurationKey dictConfigKey,   parentConfigKey;
+        DictLicenseCode      dictLicenseCode, parentLicenseCode;
+        boolean              existParentParent;
+        int                  i;
+        container            nodes;
+        #TreeNodeSysNodeType
+        #Properties
+        #AOT
+        ;
+        //info(int2str(_curNode.treeNodeType().id()));
+        switch (_curNode.treeNodeType().id())
+        {
+            case #NT_MENUITEM:               // Menu item in Menu
+                retNode = TreeNode::findNode(#MenuItemsPath+'\\' +
+                                              findProperty(_curNode.AOTgetProperties(),#PropertyMenuItemType)+'\\' +
+                                              findProperty(_curNode.AOTgetProperties(),#PropertyMenuItemName));
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+
+            case #NT_FORMFIELDLAYOUT:     // Formcontrol (MenuItem Button, *Edit, ComboBox, CheckBox, Grid, Group)
+                switch (true)
+                {
+                    case match('<MenuItemButton\\:',_curNode.treeNodeName()):
+                        retNode = TreeNode::findNode(#MenuItemsPath+'\\' +
+                                                      findProperty(_curNode.AOTgetProperties(),#PropertyMenuItemType)+'\\' +
+                                                      findProperty(_curNode.AOTgetProperties(),#PropertyMenuItemName));
+                        break;
+                    case match('<StringEdit\\:',_curNode.treeNodeName()):
+                    case match('<RealEdit\\:',_curNode.treeNodeName()):
+                    case match('<IntEdit\\:',_curNode.treeNodeName()):
+                    case match('<DateEdit\\:',_curNode.treeNodeName()):
+                    case match('<CheckBox\\:',_curNode.treeNodeName()):
+                    case match('<ComboBox\\:',_curNode.treeNodeName()):
+                    case match('<RadioButton\\:',_curNode.treeNodeName()):
+                    case match('<\\[Grid\\:',_curNode.treeNodeName()):
+                    case match('<\\[Group\\:',_curNode.treeNodeName()):
+                    case match('<Window\\:',_curNode.treeNodeName()):
+                        treeNodeName = SysTreeNode::applObjectName(_curNode.treeNodePath());
+                        dsName = findProperty(_curNode.AOTgetProperties(), #PropertyDatasource);
+                        if (dsName)
+                        {
+                            fieldName = findProperty(_curNode.AOTgetProperties(), #PropertyDatafield);
+                            if (fieldName)
+                            {
+                                retNode = TreeNode::findNode(strfmt('%1\\%2\\Data Sources\\%3\\Fields\\%4', #FormsPath, treeNodeName, dsName, fieldName));
+                            }
+                            else
+                            {
+                                methodName = findProperty(_curNode.AOTgetProperties(), #PropertyDatamethod);
+                                if (methodName)
+                                {
+                                    retNode = TreeNode::findNode(#FormsPath + '\\' + strFmt(#DataSourceMethodPath, treeNodeName, dsName, methodName));
+                                    if (!retNode)
+                                    {
+                                        retNode = TreeNode::findNode(strfmt('%1\\%2\\Data Sources\\%3', #FormsPath, treeNodeName, dsName));
+                                        retNode = SysOpenNewWindowAOTNode::getUsedByNode(retNode);
+                                        retNode = TreeNode::findNode(strfmt('%1%3\\%2', retNode.treeNodePath(), methodName, #MethodsPath));
+                                    }
+                                }
+                                else
+                                {
+                                    groupName = findProperty(_curNode.AOTgetProperties(), #PropertyDataGroup);
+                                    if (groupName)
+                                    {
+                                        retNode = SysOpenNewWindowAOTNode::findNode(strfmt('%1\\%2\\Data Sources\\%3\\Fields\\%4', #FormsPath, treeNodeName, dsName, groupName), #NT_FORMFIELDGROUP);
+                                        if (retNode)
+                                        {
+                                            retNode = SysOpenNewWindowAOTNode::getUsedByNode(retNode);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        retNode = TreeNode::findNode(strfmt('%1\\%2\\Data Sources\\%3', #FormsPath, treeNodeName, dsName));
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            methodName = findProperty(_curNode.AOTgetProperties(), #PropertyDatamethod);
+                            if (methodName)
+                            {
+                                tmpNode = _curnode;
+                                do
+                                {
+                                    retNode = TreeNode::findNode(strFmt(#MethodPath, tmpNode.treeNodePath(), methodName));
+                                    if (retNode)
+                                    {
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        tmpNode = tmpNode.AOTparent();
+                                        treeNodeName = SysTreeNode::applObjectName(tmpNode.treeNodePath());
+                                    }
+                                }
+                                while (tmpNode.AOTparent().treeNodePath() != #AOTRootPath);
+                            }
+                            else
+                            {
+                                typeName = findProperty(_curNode.AOTgetProperties(), #PropertyExtendedDatatype);
+                                if (typeName)
+                                {
+                                    retNode = TreeNode::findNode(#ExtendedDataTypesPath + '\\' + typeName);
+                                    if (!retNode)
+                                    {
+                                        retNode = TreeNode::findNode(#SystemTypesPath + '\\' + typeName);
+                                    }
+                                }
+                                else
+                                {
+                                    typeName = findProperty(_curNode.AOTgetProperties(), #PropertyEnumtype);
+                                    if (typeName)
+                                    {
+                                        retNode = TreeNode::findNode(#BaseEnumsPath + '\\' + typeName);
+                                        if (!retNode)
+                                        {
+                                            retNode = TreeNode::findNode(#SystemEnumsPath + '\\' + typeName);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                }
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #NT_FUNCITEM:
+                menuFunction = _curNode;
+                if (menuFunction.objectType() == UtilElementType::Class &&    // Class
+                    menuFunction.object())
+                {
+                    retNode = TreeNode::findNode(#ClassesPath+'\\'+menuFunction.object());
+                }
+                if (menuFunction.objectType() == UtilElementType::Form &&    // Form
+                    menuFunction.object())
+                {
+                    retNode = TreeNode::findNode(#FormsPath+'\\'+menuFunction.object());
+                }
+                if (menuFunction.objectType() == UtilElementType::Report &&    // Report
+                    menuFunction.object())
+                {
+                    retNode = TreeNode::findNode(#ReportsPath+'\\'+menuFunction.object());
+                }
+                if (menuFunction.objectType() == UtilElementType::Job  &&    // Job
+                    menuFunction.object())
+                {
+                    retNode = TreeNode::findNode(#JobsPath+'\\'+menuFunction.object());
+                }
+                if (menuFunction.objectType() == UtilElementType::Query  &&    // Query
+                    menuFunction.object())
+                {
+                    retNode = TreeNode::findNode(#QueriesPath+'\\'+menuFunction.object());
+                }
+                if (menuFunction.objectType() == UtilElementType::InfoPart  &&    // InfoPart
+                    menuFunction.object())
+                {
+                    retNode = TreeNode::findNode(#InfoPartsPath+'\\'+menuFunction.object());
+                }
+                if (menuFunction.objectType() == UtilElementType::FormPart  &&    // FormPart
+                    menuFunction.object())
+                {
+                    retNode = TreeNode::findNode(#FormPartsPath+'\\'+menuFunction.object());
+                }
+                if (menuFunction.objectType() == UtilElementType::CueGroup  &&    // CueGroup
+                    menuFunction.object())
+                {
+                    retNode = TreeNode::findNode(#CueGroupsPath+'\\'+menuFunction.object());
+                }
+                if (menuFunction.objectType() == UtilElementType::SSRSReport  &&    // SSRSReport
+                    menuFunction.object())
+                {
+                    retNode = TreeNode::findNode(#SSRSReportsPath+'\\'+menuFunction.object());
+                }
+                break;
+            case #NT_CLASS:     // Class - open the parent
+                dictClass = new SysDictClass(_curNode.applObjectId());
+                if (dictClass && dictClass.extend())
+                {
+                    dictClass = new SysDictClass(dictClass.extend());
+                    if (dictClass)
+                    {
+                        retNode = TreeNode::findNode(#ClassesPath+'\\'+dictClass.name());
+                        if (!retNode)
+                        {
+                            retNode = TreeNode::findNode(#SystemClassesPath + '\\' + dictClass.name());
+                        }
+                    }
+                }
+                break;
+            case #NT_DBMAPPING:                     // Table for Mapped Table
+                retNode = TreeNode::findNode(#TablesPath+'\\'+_curNode.treeNodeName());
+                break;
+            case #NT_FORMDATAFIELD, #NT_QEDBFIELD:  // Table Field for Form or Query DataSource Field
+                tmpNode = SysOpenNewWindowAOTNode::getUsedByNode(_curNode.AOTparent().AOTparent()); // AOTPath to Table
+                if (tmpNode)
+                {
+                    retNode = TreeNode::findNode(tmpNode.treeNodePath() + '\\' + _curNode.AOTparent().AOTname() + '\\' + _curNode.AOTname()); // AOTPath to table field
+                    if (!retNode)
+                    {
+                        retNode = TreeNode::findNode(tmpNode.treeNodePath() + '\\' + _curNode.AOTname()); // AOTPath to table field
+                    }
+                }
+                break;
+            case #NT_FORMFIELDGROUP:    // Table Group for Form DataSource Group
+                retNode = SysOpenNewWindowAOTNode::getUsedByNode(_curNode.AOTparent().AOTparent()); // AOTPath to Table
+                retNode = TreeNode::findNode(retNode.treeNodePath() + '\\Field Groups\\' + _curNode.AOTname()); // AOTPath to table field
+                break;
+            case #allFields:            // EDT for Table Field
+                dictField = SysDictField::newTreeNode(_curNode);
+                if (dictField)
+                {
+                    dictType = new SysDictType(dictField.typeId());
+                    if (!dictType)
+                    {
+                        dictEnum = new SysDictEnum(dictField.enumId());
+                    }
+                    if (dictType)
+                    {
+                        retNode = dictType.treeNode();
+                    }
+                    if (dictEnum)
+                    {
+                        retNode = dictEnum.treeNode();
+                    }
+                }
+                break;
+
+            case #allExtendedDataTypes:   // EDT (or Base Enum) - parent
+                dictType = SysDictType::newTreeNode(_curNode);
+                if (dictType)
+                {
+                    dictParentType = new SysDictType(dictType.extend());
+                    if (!dictParentType)
+                    {
+                        dictEnum = new SysDictEnum(dictType.enumId());
+                    }
+                    if (dictParentType)
+                    {
+                        retNode = dictParentType.treeNode();
+                    }
+                    if (dictEnum)
+                    {
+                        retNode = dictEnum.treeNode();
+                    }
+                }
+                break;
+            case #NT_DBTABLE:
+                dictTable = SysDictTable::newTreeNode(_curNode); // Parent in inheritance
+                if (dictTable.supportInheritance())
+                {
+                    retNode = TreeNode::findNode(#TablesPath+'\\'+tableId2Name(dictTable.extends()));
+                }
+                if (!retNode && dictTable && dictTable.formRef()) // FormRef for Table
+                {
+                    retNode = TreeNode::findNode(#MenuItemsDisplayPath+'\\'+dictTable.formRef());
+                }
+                break;
+            case #NT_SECURITYKEY:      // Security Key - parent or Configuration key
+                dictSecurityKey = new DictSecurityKey(_curNode.applObjectId());
+                if (dictSecurityKey.parentSecurityKeyId())
+                {
+                    parentSecurityKey = new DictSecurityKey(dictSecurityKey.parentSecurityKeyId());
+                    retNode = TreeNode::findNode(#SecurityKeysPath + '\\' +parentSecurityKey.name());
+                }
+                if (dictSecurityKey.configurationKeyId())
+                {
+                    parentConfigKey = new DictConfigurationKey(dictSecurityKey.configurationKeyId());
+                    retNode = TreeNode::findNode(#ConfigurationKeysPath + '\\' + parentConfigKey.name());
+                }
+                break;
+            case #NT_CONFIGURATIONKEY:  // Configuration key - parent or License Code
+                dictConfigKey = new DictConfigurationKey(_curNode.applObjectId());
+                if (dictConfigKey.parentConfigurationKeyId())
+                {
+                    parentConfigKey = new DictConfigurationKey(dictConfigKey.parentConfigurationKeyId());
+                    retNode = TreeNode::findNode(#ConfigurationKeysPath + '\\' + parentConfigKey.name());
+                }
+                if (dictConfigKey.licenseCode())
+                {
+                    parentLicenseCode = new DictLicenseCode(dictConfigKey.licenseCode());
+                    retNode = TreeNode::findNode(#LicenseCodesPath + '\\' + parentLicenseCode.name());
+                }
+                break;
+            case #SysNodeTypeSystemType:  // EDT is a System Type
+                dictTable = new DictTable(tablename2id(_curNode.AOTparent().AOTname()));
+                if (dictTable)
+                {
+                    dictField = new DictField(dictTable.id(), dictTable.fieldName2Id(_curNode.AOTname()));
+                    if (dictField)
+                    {
+                        dictType = new DictType(dictField.typeId());
+                        if (dictType)
+                        {
+                            retNode = TreeNode::findNode(#SystemTypesPath + '\\' + dictType.name());
+                        }
+                    }
+                }
+                break;
+            case #NT_SIMPLE_FIELD:  // Field in Table Index
+                retNode = TreeNode::findNode(_curNode.AOTparent().AOTparent().AOTparent().treeNodePath() + '\\Fields\\' + _curNode.AOTname());
+                break;
+            case #NT_QEDELIMITER, #NT_QEORDERTARGET: // Field in Query Range or Query Sort Index
+                retNode = TreeNode::findNode(SysOpenNewWindowAOTNode::getUsedByNode(_curNode.AOTparent().AOTparent()).treeNodePath() + '\\Fields\\' + _curNode.AOTname());
+                break;
+            case #TreeNodeTypeFormParts, #NT_CUE:
+                retNode = TreeNode::findNode(#MenuItemsDisplayPath+'\\' +
+                                              findProperty(_curNode.AOTgetProperties(), #PropertyMenuItemName));
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #NT_SECASSOCIATEDFORMNODE, #NT_FORMPART:
+                retNode = TreeNode::findNode(#FormsPath+'\\' +
+                                              findProperty(_curNode.AOTgetProperties(), #PropertyForm));
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #NT_CUE_GROUPCUE:
+                retNode = TreeNode::findNode(#CuesPath+'\\' +
+                                              findProperty(_curNode.AOTgetProperties(), #PropertyCue));
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #NT_SERVICE_NODE_REFERENCE:
+                retNode = TreeNode::findNode(#ServicesPath+'\\' +
+                                              findProperty(_curNode.AOTgetProperties(), #PropertyService));
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #NT_SERVICE:
+                retNode = TreeNode::findNode(#ClassesPath+'\\' +
+                                              findProperty(_curNode.AOTgetProperties(), #PropertyClass));
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #NT_OPERATION:
+                retNode = TreeNode::findNode(#ClassesPath+'\\' +
+                                              findProperty(_curNode.AOTparent().AOTparent().AOTgetProperties(), #PropertyClass) + '\\' +
+                                              findProperty(_curNode.AOTgetProperties(), #PropertyMethod));
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #NT_PERSPECTIVEVIEW:
+                retNode = TreeNode::findNode(#ViewsPath+'\\' +
+                                              findProperty(_curNode.AOTgetProperties(), #PropertyView));
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #TreeNodeTypeWebWebMenusLink:               // Web menu item in WebMenu
+                switch (findProperty(_curNode.AOTgetProperties(), #PropertyMenuItemType))
+                {
+                    case 'Url':
+                        retNode = TreeNode::findNode(#WebMenuItemsUrlPath+'\\' +
+                                                      findProperty(_curNode.AOTgetProperties(),#PropertyMenuItemName));
+
+                        break;
+                    case 'Action':
+                        retNode = TreeNode::findNode(#WebMenuItemsActionPath+'\\' +
+                                                      findProperty(_curNode.AOTgetProperties(),#PropertyMenuItemName));
+
+                        break;
+                }
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #NT_WEBMANAGEDCONTENTITEM:
+                retNode = TreeNode::findNode(#WebControlsPath+'\\' +
+                                              findProperty(_curNode.AOTgetProperties(), #PropertyObject));
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #NT_WEBACTIONITEM:
+                switch (findProperty(_curNode.AOTgetProperties(), #PropertyObjectType))
+                {
+                    case 'Class':
+                        retNode = TreeNode::findNode(#ClassesPath+'\\' +
+                                                      findProperty(_curNode.AOTgetProperties(),#PropertyObject));
+
+                        break;
+                    case 'Job':
+                        retNode = TreeNode::findNode(#JobsPath+'\\' +
+                                                      findProperty(_curNode.AOTgetProperties(),#PropertyObject));
+
+                        break;
+                }
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #NT_SECCODEPERMISSIONNODE:
+                retNode = TreeNode::findNode(#ClassesPath+'\\' +
+                                              findProperty(_curNode.AOTgetProperties(), #PropertyClass) + '\\' +
+                                              findProperty(_curNode.AOTgetProperties(), #PropertyMethod));
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #NT_SECPOLICYNODE:
+                retNode = TreeNode::findNode(#QueriesPath+'\\' +
+                                              findProperty(_curNode.AOTgetProperties(), #PropertyQuery));
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #NT_SECASSOCIATEDREPORTNODE:
+                retNode = TreeNode::findNode(#SSRSReportsPath+'\\' +
+                                              findProperty(_curNode.AOTgetProperties(), #PropertyName));
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #NT_SECPRIVILEGEREFERENCENODE:
+                retNode = TreeNode::findNode(#SecPrivilegesPath+'\\' +
+                                              findProperty(_curNode.AOTgetProperties(), #PropertyName));
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #NT_SECDUTYREFERENCENODE:
+                retNode = TreeNode::findNode(#SecDutiesPath+'\\' +
+                                              findProperty(_curNode.AOTgetProperties(), #PropertyName));
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #NT_SECENTRYPOINTNODE:
+                switch (findProperty(_curNode.AOTgetProperties(), #PropertyObjectType))
+                {
+                    case 'MenuItemDisplay':
+                        retNode = TreeNode::findNode(#MenuItemsDisplayPath+'\\' +
+                                                      findProperty(_curNode.AOTgetProperties(),#PropertyObjectName));
+
+                        break;
+                    case 'MenuItemOutput':
+                        retNode = TreeNode::findNode(#MenuItemsOutputPath+'\\' +
+                                                      findProperty(_curNode.AOTgetProperties(),#PropertyObjectName));
+
+                        break;
+                    case 'MenuItemAction':
+                        retNode = TreeNode::findNode(#MenuItemsActionPath+'\\' +
+                                                      findProperty(_curNode.AOTgetProperties(),#PropertyObjectName));
+
+                        break;
+                    case 'ServiceOperation':
+                        retNode = TreeNode::findNode(strFmt(#ServiceOperationPath,
+                                                      findProperty(_curNode.AOTgetProperties(),#PropertyObjectName),
+                                                      findProperty(_curNode.AOTgetProperties(),#PropertyObjectChildName)));
+
+                        break;
+                    case 'WebActionItem':
+                        retNode = TreeNode::findNode(#WebMenuItemsActionPath+'\\' +
+                                                      findProperty(_curNode.AOTgetProperties(),#PropertyObjectName));
+
+                        break;
+                    case 'WebUrlItem':
+                        retNode = TreeNode::findNode(#WebMenuItemsUrlPath+'\\' +
+                                                      findProperty(_curNode.AOTgetProperties(),#PropertyObjectName));
+
+                        break;
+                    case 'WebManagedContent':
+                        retNode = TreeNode::findNode(#WebContentItemsManagedPath+'\\' +
+                                                      findProperty(_curNode.AOTgetProperties(),#PropertyObjectName));
+
+                        break;
+                }
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+            case #NT_SSRSREPORT:
+                retNode = TreeNode::findNode(#SSRSReportsPath+'\\' +
+                                              findProperty(_curNode.AOTgetProperties(), #PropertyName));
+                if (retNode)
+                {
+                    nodes = SysOpenNewWindowAOTNode::findSSRSModelProject(retNode.treeNodePath());
+                    for (i = 2; i <= conLen(nodes); i++)
+                    {
+                        SysOpenNewWindowAOTNode::findOrOpenAOTWindow(TreeNode::findNode(conPeek(nodes, i)));
+                    }
+                    retNode = TreeNode::findNode(conPeek(nodes, 1));
+                }
+                break;
+            case #NT_QE:
+                retNode = TreeNode::findNode(#QueriesPath+'\\' +
+                                              findProperty(_curNode.AOTgetProperties(), #PropertyName));
+                if (retNode)
+                {
+                    existParentParent = true;
+                }
+                break;
+        }
+        // Any other property sheet type having a Table...
+        if (!retNode &&
+            findProperty(_curNode.AOTgetProperties(),#PropertyTable))
+        {
+            retNode = TreeNode::findNode(#TablesPath+'\\'+findProperty(_curNode.AOTgetProperties(),#PropertyTable));
+            if (!retNode)
+            {
+                retNode = TreeNode::findNode(#SystemTablesPath+'\\'+findProperty(_curNode.AOTgetProperties(),#PropertyTable));
+            }
+            if (!retNode)
+            {
+                retNode = TreeNode::findNode(#ViewsPath+'\\'+findProperty(_curNode.AOTgetProperties(),#PropertyTable));
+            }
+        }
+        if (!retNode &&
+            findProperty(_curNode.AOTgetProperties(),#PropertyTableOrView))
+        {
+            retNode = TreeNode::findNode(#TablesPath+'\\'+findProperty(_curNode.AOTgetProperties(),#PropertyTableOrView));
+            if (!retNode)
+            {
+                retNode = TreeNode::findNode(#SystemTablesPath+'\\'+findProperty(_curNode.AOTgetProperties(),#PropertyTableOrView));
+            }
+            if (!retNode)
+            {
+                retNode = TreeNode::findNode(#ViewsPath+'\\'+findProperty(_curNode.AOTgetProperties(),#PropertyTableOrView));
+            }
+        }
+        return retNode;
+    }
+
+
+    static void main(Args _args)
+    {
+        SysOpenNewWindowApplObject sysOpenNewWindowApplObject = new SysOpenNewWindowAOTNode();
+        ;
+        if (SysContextMenu::startedFrom(_args))
+        {
+            sysOpenNewWindowApplObject.runsysContextMenu(_args.parmObject());
+        }
+    }
+
+
+    static boolean verifyItem(SysContextMenu _sysContextMenu)
+    {
+        if (new SysOpenNewWindowAOTNode().usingTreeNode(_sysContextMenu.first()))
+        {
+            return true;
+        }
+        return false;
+    }
+}

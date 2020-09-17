@@ -1,0 +1,1508 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FTM
+
+; Microsoft Dynamics AX MENUITEM : SysOpenNewWindowAOTNode unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MENUITEM #SysOpenNewWindowAOTNode
+    Type: 3
+    PROPERTIES
+      Name                #SysOpenNewWindowAOTNode
+      Label               #Открыть используемый объект
+      HelpText            #Открыть используемый объект
+      ObjectType          #Class
+      Object              #SysOpenNewWindowAOTNode
+      ConfigurationKey    #SysDevelopmentXPP
+      Origin              #{A34AC276-D6B4-4701-B228-1D8603D02F69}
+    ENDPROPERTIES
+    
+  ENDMENUITEM
+  
+
+***Element: MCR
+
+; Microsoft Dynamics AX Macro: TreeNodeSysNodeType выгружен
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #TreeNodeSysNodeType
+    #    #define.allFields(
+    #        #NT_DBFIELDSTRING,
+    #        #NT_DBFIELDINT,
+    #        #NT_DBFIELDREAL,
+    #        #NT_DBFIELDDATE,
+    #        #NT_DBFIELDENUM,
+    #        #NT_DBFIELDQUEUE,
+    #        #NT_DBFIELDTIME,
+    #        #NT_DBFIELDGUID,
+    #        #NT_DBFIELDINT64,
+    #        #NT_DBFIELDDATETIM)
+    #
+    #    #define.allExtendedDataTypes(
+    #        #NT_DBENUMTYPETYPE,
+    #        #NT_DBQUEUETYPE,
+    #        #NT_DBDATETYPE,
+    #        #NT_DBINTTYPE,
+    #        #NT_DBREALTYPE,
+    #        #NT_DBSTRINGTYPE,
+    #        #NT_DBTIMETYPE,
+    #        #NT_DBGUIDTYPE,
+    #        #NT_DBINT64TYPE,
+    #        #NT_DBDATETIMETYPE)
+    #
+    ##define.TreeNodeTypeParts(1427)
+    ##define.TreeNodeTypeFormParts(1436) // VSUH, 01.07.2012
+    ##define.TreeNodeTypeSSRSReports(1437)
+    ##define.TreeNodeTypeSSRSReportsReportStyleTemplates(1440)
+    ##define.TreeNodeTypeSSRSReportsReportStyleTemplatesLayoutTemplates(1443)
+    ##define.TreeNodeTypeSSRSReportsReportStyleTemplatesListStyleTemplates(1444)
+    ##define.TreeNodeTypeSSRSReportsReportStyleTemplatesMatrixStyleTemplates(1445)
+    ##define.TreeNodeTypeSSRSReportsReportStyleTemplatesPieandDoughnutChartStyleTemplates(1446)
+    ##define.TreeNodeTypeSSRSReportsReportStyleTemplatesTableStyleTemplates(1447)
+    ##define.TreeNodeTypeSSRSReportsReportStyleTemplatesXYChartStyleTemplates(1448)
+    ##define.TreeNodeTypeSSRSReportsReportDatasources(1449)
+    ##define.TreeNodeTypeSSRSReportsReportImages(1450)
+    ##define.TreeNodeTypeReportsSectionTemplates(86)
+    ##define.TreeNodeTypeWeb(851)
+    ##define.TreeNodeTypeWebWebContent(867)
+    ##define.TreeNodeTypeWebWebContentDisplay(869)
+    ##define.TreeNodeTypeWebWebContentOutput(871)
+    ##define.TreeNodeTypeWebWebMenus(806)
+    ##define.TreeNodeTypeWebWebMenusLink(350) // VSUH, 03.03.2013
+    ##define.TreeNodeTypeWebWebFiles(805)
+    ##define.TreeNodeTypeWebWebFilesWebParts(875)
+    ##define.TreeNodeTypeWebWebFilesSiteDefinitions(877)
+    ##define.TreeNodeTypeWebWebFilesSiteTemplates(879)
+    ##define.TreeNodeTypeWebWeblets(873)
+    ##define.TreeNodeTypeWebWebModules(885)
+    ##define.TreeNodeTypeServiceGroups(1325)
+    ##define.TreeNodeTypeWorkflow(1410)
+    ##define.TreeNodeTypeWorkflowProviders(1395)
+    ##define.TreeNodeTypeSecurity(1523)
+    #
+    ##define.SysNodeTypeTableCollection(396)
+    #
+    ##define.SysNodeTypeFormDatasource(144)
+    ##define.SysNodeTypeQueryDatasource(1156)
+    #
+    ##define.SysNodeTypeSystemTable(1210)
+    ##define.SysNodeTypeSystemType(340)
+    ##define.SysNodeTypeSystemEnum(1211)
+    ##define.SysNodeTypeSystemClass(1205)
+    #
+    #// Nodetypes
+    ##define.NT_MULTITYPE     ( 0xFFFF)
+    #
+    ##define.NT_AOT           ( 1)
+    ##define.NT_DB            ( 2)
+    ##define.NT_CONTROLNODE   ( 4)
+    #
+    ##define.NT_STRING        ( 10)
+    #
+    ##define.NT_END           ( 26)
+    ##define.NT_PROJECT_GROUP ( 27)
+    ##define.NT_PROJECT_TOP   ( 28)
+    ##define.NT_PROJECT_LIST  ( 29)
+    ##define.NT_PROJECT_NODE  ( 30)
+    ##define.NT_PROJECT_MAIN  ( 31)
+    ##define.NT_PROJECT_DUMMY ( 32)
+    #
+    ##define.NT_FORMCONTROLCLIPNODE ( 80)
+    #
+    #// REPORT NODEs
+    ##define.NT_RGFIELDGROUP   ( 88)
+    ##define.NT_RGGENDESIGN    ( 89)
+    ##define.NT_RGTEMPLATE     ( 90)
+    ##define.NT_RGSORTKEY      ( 91)
+    ##define.NT_RGOBJECTBANK   ( 92)
+    ##define.NT_RGGENERAL      ( 93)
+    ##define.NT_RGDESIGNS      ( 94)
+    ##define.NT_RGDESIGN       ( 95)
+    ##define.NT_RGBLOCK        ( 96)
+    ##define.NT_RGFIELDLIST    ( 97)
+    ##define.NT_RGFIELD        ( 98)
+    ##define.NT_RGFIELDLISTS   ( 99)
+    ##define.NT_RGDATASOURCE   ( 100)
+    ##define.NT_RGTEMPLATES    ( 101)
+    #
+    #// LIST NODEs
+    ##define.NT_LIST          ( 102)
+    ##define.NT_FORMLIST      ( 103)
+    ##define.NT_RGLIST        ( 104)
+    ##define.NT_DBTABLELIST   ( 107)
+    ##define.NT_DBENUMLIST    ( 108)
+    ##define.NT_DBMAPLIST     ( 109)
+    ##define.NT_DBFIELDLIST   ( 110)
+    ##define.NT_MENULIST      ( 112)
+    ##define.NT_FORMBUILDDERIVEDDATASOURCECOLLECTION     (113)
+    ##define.NT_FORMBUILDDERIVEDDATASOURCE               (114)
+    ##define.NT_DBINDEXLIST     ( 117)
+    ##define.NT_DBINFOLIST      ( 118)
+    ##define.NT_DBMAPPINGLIST   ( 119)
+    ##define.NT_DBREFERENCELIST ( 120)
+    ##define.NT_DBFIELDGROUPLIST (  121)
+    ##define.NT_DBCOLLECTIONLIST   ( 122)
+    ##define.NT_DBVIEWLIST    ( 124)
+    #
+    ##define.NT_FUNCCODELIST          ( 135)
+    ##define.NT_GROUPLIST             ( 136)
+    ##define.NT_TYPELIST              ( 137)
+    ##define.NT_TABLELIST             ( 138)
+    ##define.NT_BUILTINFUNCTIONLIST( 139)
+    #
+    ##define.NT_FORMOBJECTBANK            ( 140)
+    ##define.NT_FORMDESIGNLIST            ( 141)
+    ##define.NT_FORMBASEPOOL              ( 142)
+    ##define.NT_FORMTRIGGERLIST           ( 143)
+    ##define.NT_FORMDATASOURCEPOOL        ( 144)
+    ##define.NT_FORMFIELDGROUP            ( 146)
+    ##define.NT_FORMFIELDLIST             ( 147)
+    ##define.NT_FORMDESIGN                ( 148)
+    ##define.NT_FORMFUNCTIONBUTTONLIST    ( 149)
+    ##define.NT_FORMCOMMANDBUTTONLIST     ( 150)
+    ##define.NT_FORMMENULIST              ( 151)
+    ##define.NT_FORMFIELDLAYOUT           ( 152)
+    ##define.NT_FORMFIELDLAYOUTLIST       ( 153)
+    #
+    ##define.NT_FORMFIELDLAYOUTTABHEAD    ( 155)
+    ##define.NT_FORMGRID                  ( 156)
+    ##define.NT_FORMGRIDFIELD             ( 157)
+    ##define.NT_FORMCOMMANDLIST           ( 158)
+    ##define.NT_FORMCOMMANDFIELD          ( 159)
+    ##define.NT_FORMCOMMANDEXTFIELD       ( 160)
+    ##define.NT_FORMTREECONTROL           ( 161)
+    #
+    ##define.NT_FORMBUILDREFERENCEDATASOURCECOLLECTION   (170)
+    ##define.NT_FORMBUILDREFERENCEDATASOURCE             (171)
+    #
+    ##define.NT_QELIST                    ( 1153)
+    ##define.NT_QEBLOCKLIST               ( 1154)
+    ##define.NT_QEBLOCK                   ( 1156)
+    ##define.NT_QEDELIMITERLIST           ( 1157)
+    ##define.NT_QEDELIMITER               ( 1158)
+    ##define.NT_QEORDERTARGET             ( 1159)
+    ##define.NT_QEORDERTARGETLIST         ( 1160)
+    ##define.NT_QEINDEXLIST               ( 1161)
+    ##define.NT_QEINDEXNODE               ( 1162)
+    ##define.NT_QEINDEXTARGET             ( 1163)
+    ##define.NT_QETOPSOURCENODE           ( 1164)
+    ##define.NT_QEBLOCKNODE               ( 1165)
+    ##define.NT_QETOPBLOCKNODE            ( 1166)
+    ##define.NT_QEBLOCKASSOCIATIONLIST    ( 1167)
+    ##define.NT_QEBLOCKASSOCIATION        ( 1168)
+    ##define.NT_QEDYNAMICDELIMITER        ( 1169)
+    ##define.NT_QEFIELDLIST               ( 1170)
+    ##define.NT_QEFIELD                   ( 1171)
+    ##define.NT_QESUMFIELD                ( 1172)
+    ##define.NT_QECOUNTFIELD              ( 1173)
+    ##define.NT_QEAVGFIELD                ( 1174)
+    ##define.NT_QEMINFIELD                ( 1175)
+    ##define.NT_QEMAXFIELD                ( 1176)
+    ##define.NT_QEDBFIELD                 ( 1177)
+    ##define.NT_QEDEPENDENTOBJECTS        ( 1182)
+    ##define.NT_QECOMPOSITEQUERY          ( 1424)
+    #
+    #
+    #// Kernel Documentation
+    ##define.NT_DOC_FIRST                 ( 1200)
+    #
+    ##define.NT_KERNELDOCLIST             ( 1200)
+    ##define.NT_KERNELDOCKEYWORDLIST      ( 1201)
+    ##define.NT_KERNELDOCFUNCTIONLIST     ( 1202)
+    ##define.NT_KERNELDOCCLASSLIST        ( 1203)
+    ##define.NT_KERNELDOCNODETYPELIST     ( 1204)
+    ##define.NT_KERNELDOCCLASSNODE        ( 1205)
+    ##define.NT_KERNELDOCFUNCTIONNODE     ( 1206)
+    ##define.NT_KERNELDOCENUMLIST     ( 1207)
+    ##define.NT_KERNELDOCTYPELIST( 1208)
+    ##define.NT_KERNELDOCTABLELIST( 1209)
+    #
+    ##define.NT_KERNELDOCTABLE( 1210)
+    ##define.NT_KERNELDOCENUM( 1211)
+    ##define.NT_KERNELDOCPROPERTYLIST( 1212)
+    ##define.NT_KERNELDOCGLOBALLIST( 1213)
+    ##define.NT_KERNELDOCBUILTINFUNCTIONNODE     ( 1214)
+    #
+    ##define.NT_APPLDOCLIST               ( 1220)
+    ##define.NT_APPLDOCTYPELIST           ( 1221)
+    ##define.NT_APPLDOCTABLELIST          ( 1222)
+    ##define.NT_APPLDOCMENUFUNCTIONLIST   ( 1223)
+    ##define.NT_APPLDOCFORMLIST           ( 1224)
+    ##define.NT_APPLDOCREPORTLIST         ( 1225)
+    ##define.NT_APPLDOCQUERYLIST          ( 1226)
+    ##define.NT_APPLDOCCLASSLIST          ( 1227)
+    ##define.NT_APPLDOCLIBLIST            ( 1228)
+    ##define.NT_APPLDOCENUMLIST( 1229)
+    ##define.NT_APPLDOCGLOBALLIST( 1230)
+    ##define.NT_APPLDOCHINTLIST( 1231)
+    ##define.NT_APPLDOCWEBFORMLIST        ( 1233)
+    #
+    ##define.NT_APPLDOCLICENSECODELIST       ( 1234)
+    ##define.NT_APPLDOCPROCEDURALHELPLIST    ( 1235)
+    ##define.NT_APPLDOCCONFIGURATIONKEYLIST  ( 1236)
+    ##define.NT_APPLDOCSECURITYKEYLIST       ( 1237)
+    #
+    ##define.NT_APPLDOCMENUFUNCTIONDISPLAYLIST   ( 1238)
+    ##define.NT_APPLDOCMENUFUNCTIONOUTPUTLIST    ( 1239)
+    ##define.NT_APPLDOCMENUFUNCTIONACTIONLIST    ( 1240)
+    #
+    ##define.NT_APPLDOCWEBMENUITEMMAIN   ( 1241)
+    ##define.NT_APPLDOCWEBURLITEMLIST    ( 1242)
+    ##define.NT_APPLDOCWEBACTIONITEMLIST ( 1243)
+    #
+    ##define.NT_APPLDOCWEBCONTENTITEMMAIN        ( 1244)
+    ##define.NT_APPLDOCWEBDISPLAYCONTENTITEMLIST ( 1245)
+    ##define.NT_APPLDOCWEBOUTPUTCONTENTITEMLIST  ( 1246)
+    #
+    ##define.NT_APPLCODEDOCLIST          ( 1250)
+    ##define.NT_APPLCODEDOCCLASSLIST     ( 1251)
+    ##define.NT_APPLCODEDOCTABLELIST     ( 1252)
+    ##define.NT_APPLDOCWEBLETITEMLIST    ( 1254)
+    #
+    ##define.NT_DOC_LAST                 ( 1254)
+    #
+    ##define.NT_DBDELETEACTIONLIST( 167)
+    ##define.NT_DBFUNCTIONLIST            ( 169)
+    ##define.NT_XALLIST                   ( 172)
+    ##define.NT_MCRLIST                   ( 173)
+    #
+    ##define.NT_DBQUEUETYPELIST           ( 176)
+    ##define.NT_DBDATETYPELIST            ( 177)
+    ##define.NT_DBINTTYPELIST             ( 178)
+    ##define.NT_DBREALTYPELIST            ( 179)
+    ##define.NT_DBSTRINGTYPELIST          ( 180)
+    ##define.NT_DBTYPELIST                ( 181)
+    ##define.NT_FUNCTIONLIST              ( 182)
+    ##define.NT_DBFUNCTIONCODELIST        ( 183)
+    ##define.NT_UAGROUPLIST               ( 184)
+    ##define.NT_UAUSERLIST                ( 185)
+    ##define.NT_CLASSLIST                 ( 187)
+    ##define.NT_DBTYPEREFERENCELIST( 188)
+    ##define.NT_DBTYPEELEMENTLIST( 189)
+    ##define.NT_FORMFIELDLAYOUTTABPAGE    ( 190)
+    #
+    ##define.NT_MEMBERFUNCLIST            ( 191)
+    ##define.NT_KEYWORDLIST               ( 192)
+    #
+    ##define.NT_FUNCITEMMAIN               ( 193)
+    ##define.NT_FUNCITEMLIST               ( 194)
+    #
+    ##define.NT_DBLICENSECODELIST         ( 195)
+    ##define.NT_CONFIGURATIONKEYLIST      ( 196)
+    ##define.NT_SECURITYKEYLIST           ( 197)
+    ##define.NT_SIMPLE_LIST               ( 199)
+    #
+    #
+    #// PROCESS NODEs
+    #
+    ##define.NT_PROCESS           ( 200)
+    ##define.NT_FORM              ( 201)
+    ##define.NT_REPORT            ( 202)
+    #//#define.NT_QT                ( 203)
+    #
+    ##define.NT_DBTABLE           ( 204)
+    #
+    ##define.NT_MENU              ( 205)
+    ##define.NT_DATASET           ( 207)
+    ##define.NT_DBENUMTYPE        ( 209)
+    ##define.NT_SUBMENU           ( 210)
+    ##define.NT_DBCOLLECTION      ( 211)
+    ##define.NT_DBCOLLECTIONTABLE ( 212)
+    #
+    ##define.NT_DBDELETEACTION( 213)
+    #
+    ##define.NT_XALCODE           ( 215)
+    ##define.NT_MCRCODE           ( 218)
+    #
+    ##define.NT_DBFUNCTION        ( 220)
+    ##define.NT_CLASSFUNCTION     ( 222)
+    ##define.NT_DBFUNCTIONCODECHILD ( 223)
+    #
+    ##define.NT_DBTYPEELEMENT     ( 226)
+    #
+    ##define.NT_DBTYPE( 227)
+    ##define.NT_DBENUMTYPETYPE    ( 228)
+    #
+    ##define.NT_DBGUIDTYPE        ( 229)
+    ##define.NT_DBQUEUETYPE       ( 230)
+    ##define.NT_DBDATETYPE        ( 231)
+    ##define.NT_DBINTTYPE         ( 232)
+    ##define.NT_DBREALTYPE        ( 233)
+    ##define.NT_DBSTRINGTYPE      ( 234)
+    ##define.NT_DBINT64TYPE       ( 235)
+    ##define.NT_DBMAP             ( 236)
+    ##define.NT_DBFUNCTIONCODE    ( 238)
+    ##define.NT_DBGROUPFIELD      ( 239)
+    ##define.NT_DBTIMETYPE        ( 240)
+    #
+    ##define.NT_DBMAPPING         ( 241)
+    ##define.NT_DBMAPPINGFIELD    ( 242)
+    ##define.NT_DBVIEW            ( 243)
+    ##define.NT_DBVIEWFIELDLIST   ( 244)
+    ##define.NT_DBVIEWFIELD       ( 245)
+    ##define.NT_DBVIEWFIELDAGGREGATE ( 246)
+    ##define.NT_DBVIEWCOMPUTEDFIELDSTRING ( 248)
+    ##define.NT_DBVIEWCOMPUTEDFIELDINT ( 249)
+    ##define.NT_DBVIEWCOMPUTEDFIELDREAL ( 900)
+    ##define.NT_DBVIEWCOMPUTEDFIELDDATE ( 901)
+    ##define.NT_DBVIEWCOMPUTEDFIELDENUM ( 902)
+    ##define.NT_DBVIEWCOMPUTEDFIELDINT64 ( 904)
+    ##define.NT_DBVIEWCOMPUTEDFIELDDATETIME ( 905)
+    #
+    ##define.NT_DBREFERENCE( 250)
+    ##define.NT_DBNORMALREFERENCEFIELD( 251)
+    ##define.NT_DBTHISFIXEDREFERENCEFIELD( 252)
+    ##define.NT_DBEXTERNFIXEDREFERENCEFIELD( 253)
+    #
+    ##define.NT_DBTYPENORMALREFERENCE        ( 254)
+    ##define.NT_DBTYPEEXTERNFIXEDREFERENCE   ( 255)
+    ##define.NT_DBDATETIMETYPE    ( 256)
+    #
+    ##define.NT_FUNCITEM          ( 296)
+    ##define.NT_FUNCTION          ( 299)
+    ##define.NT_ITEM              ( 300)
+    #
+    ##define.NT_DBINDEX           ( 301)
+    ##define.NT_UAUSER            ( 302)
+    ##define.NT_DBINFO            ( 303)
+    ##define.NT_DBTRIGGER         ( 304)
+    ##define.NT_DBFIELDTRIGGER    ( 305)
+    ##define.NT_DBINDEXTRIGGER    ( 306)
+    ##define.NT_MENUITEM          ( 307)
+    ##define.NT_SEPARATOR         ( 308)
+    ##define.NT_FUNCCODE          ( 309)
+    ##define.NT_GROUP             ( 310)
+    ##define.NT_DBLICENSECODE     ( 311)
+    ##define.NT_CONFIGURATIONKEY  ( 312)
+    ##define.NT_SECURITYKEY       ( 313)
+    ##define.NT_PKFK               ( 314 )
+    ##define.NT_DBFULLTEXTINDEX   ( 315)
+    ##define.NT_DBFULLTEXTINDEXLIST ( 316)
+    #
+    #//#define.NT_PRDRVPAPER        ( 311)
+    #//#define.NT_PRDRVLINE         ( 312)
+    #//#define.NT_PRDRVFONT         ( 313)
+    #//#define.NT_PRDRVTYPESTYLE    ( 314)
+    #//#define.NT_PRDRVCOLOR        ( 315)
+    #//#define.NT_PRDRVOPTIONS      ( 316)
+    #//#define.NT_PRDRVTRANS        ( 317)
+    #//#define.NT_PRDRVTRANSCODE    ( 318)
+    ##define.NT_FORMBLOCK         ( 319)
+    #//#define.NT_MATRIXMENUCOLUMN  ( 320)
+    #//#define.NT_MATRIXMENUROW     ( 321)
+    #
+    #
+    ##define.NT_UAGROUP           ( 322)
+    ##define.NT_DBINDEXFIELD( 323)
+    ##define.NT_DBENUM            ( 324)
+    #
+    ##define.NT_TABLE             ( 326)
+    ##define.NT_TYPE              ( 327)
+    ##define.NT_LIBRARY           ( 328)
+    ##define.NT_CLASS             ( 329)
+    ##define.NT_QE                ( 330)
+    ##define.NT_MENUREFERENCE     ( 331)
+    #
+    ##define.NT_OBJECTMETHOD      ( 335)
+    ##define.NT_STATICMETHOD      ( 336)
+    ##define.NT_KERNELMETHOD      ( 337)
+    #
+    ##define.NT_SIMPLE_ENUM       ( 339)
+    ##define.NT_DOCNODE           ( 340)
+    ##define.NT_APPLDOCHINTNODE   ( 341)
+    #
+    ##define.NT_SIMPLE_MAP    ( 384)
+    ##define.NT_SIMPLE_BUILTINFUNCTION( 385)
+    ##define.NT_SIMPLE_MENU       ( 386)
+    ##define.NT_SIMPLE_TABLEDATA  ( 387)
+    ##define.NT_SIMPLE_CLASSDATA  ( 388)
+    ##define.NT_SIMPLE_KEYWORD    ( 389)
+    ##define.NT_SIMPLE_ENUMTYPE   ( 390)
+    ##define.NT_SIMPLE_CLASS      ( 391)
+    ##define.NT_SIMPLE_LIBRARY    ( 392)
+    ##define.NT_SIMPLE_USER       ( 393)
+    ##define.NT_SIMPLE_INDEX      ( 394)
+    ##define.NT_SIMPLE_TYPE       ( 395)
+    ##define.NT_SIMPLE_TABLE      ( 396)
+    ##define.NT_SIMPLE_GROUP      ( 397)
+    ##define.NT_SIMPLE_FUNCCODE   ( 398)
+    ##define.NT_SIMPLE_FUNCTION   ( 399)
+    #
+    #
+    #// Fields
+    #
+    #
+    ##define.NT_FIELD             ( 400)
+    ##define.NT_FORMBLOCKFIELD    ( 402)
+    #
+    ##define.NT_FORMDATAFIELD     ( 403)
+    ##define.NT_DBFIELD           ( 404)
+    ##define.NT_DBFIELDSTRING     ( 405)
+    ##define.NT_DBFIELDINT        ( 406)
+    ##define.NT_DBFIELDREAL       ( 407)
+    ##define.NT_DBFIELDDATE       ( 408)
+    ##define.NT_DBFIELDENUM       ( 409)
+    ##define.NT_DBFIELDQUEUE      ( 410)
+    ##define.NT_DBFIELDGROUP      ( 411)
+    ##define.NT_DBFIELDTIME       ( 412)
+    ##define.NT_DBFIELDGROUPAUTOREPORT ( 413)
+    ##define.NT_DBFIELDGROUPAUTOLOOKUP ( 414)
+    ##define.NT_DBFIELDGUID       ( 415)
+    ##define.NT_DBFIELDINT64      ( 416)
+    ##define.NT_DBFIELDDATETIM    ( 417)
+    #
+    ##define.NT_SIMPLE_FIELD      ( 499)
+    #
+    ##define.NT_MEMBERFUNCNODE    ( 502)
+    ##define.NT_MEMBERFUNCNODELOCAL ( 503)
+    ##define.NT_DATAMEMBERNODE    ( 504)
+    #
+    ##define.NT_WORKFLOWLIST          ( 520)
+    ##define.NT_WORKFLOWPROCESS       ( 521)
+    ##define.NT_WORKFLOWTASKLIST      ( 522)
+    ##define.NT_WORKFLOWTASK          ( 523)
+    ##define.NT_WORKFLOWROUTINGLIST   ( 524)
+    ##define.NT_WORKFLOWROUTING       ( 525)
+    #
+    ##define.NT_ITEMMENU          ( 600)
+    ##define.NT_FORMBLOCKMENU     ( 601)
+    #
+    ##define.NT_USERSETUPROOT     ( 701)
+    ##define.NT_SETUPSTATUSLINE   ( 702)
+    ##define.NT_SETUPGENERAL      ( 703)
+    ##define.NT_SETUPMENUSLIST    ( 705)
+    ##define.NT_SETUPWINDOWSLIST  ( 706)
+    ##define.NT_SETUPDEVELOPMENT  ( 707)
+    ##define.NT_MAINMENUSLIST     ( 708)
+    ##define.NT_USERMENUSLIST     ( 709)
+    #
+    ##define.NT_MAINMENU          ( 715)
+    ##define.NT_USERMENU          ( 716)
+    #
+    ##define.NT_TASKSETUPROOT     ( 720)
+    ##define.NT_TASKSETUPGROUP    ( 721)
+    ##define.NT_TASKSETUPNODE     ( 722)
+    ##define.NT_KEYSETUPNODE      ( 723)
+    #
+    ##define.NT_SETUPWINDOWTYPELIST   ( 730)
+    ##define.NT_SETUPWINDOWNODE       ( 731)
+    #
+    ##define.NT_WEBFORM( 800)
+    ##define.NT_WEBFORMLIST( 801)
+    ##define.NT_IMAGERESOURCE(820)
+    ##define.NT_REFERENCE( 822)
+    #
+    #// Label FIle
+    ##define.NT_LABELFILELIST(830)
+    ##define.NT_LABELFILE(831)
+    ##define.NT_LABELFILELANGUAGELIST(832)
+    ##define.NT_LABELFILELANGUAGE(833)
+    #
+    ##define.NT_WEBPAGESTANDARD(859)
+    ##define.NT_WEBPAGEPDAHORZ(860)
+    ##define.NT_WEBPAGEPDAVERT(861)
+    #
+    ##define.NT_WEBMENUITEMMAIN(862)
+    ##define.NT_WEBURLITEMLIST(863)
+    ##define.NT_WEBURLITEM(864)
+    ##define.NT_WEBACTIONITEMLIST(865)
+    ##define.NT_WEBACTIONITEM(866)
+    #
+    ##define.NT_WEBPAGEDEF(881)
+    ##define.NT_WEBSTATICFILE(883)
+    ##define.NT_WEBCONTROLLIST(886)
+    ##define.NT_WEBCONTROL(887)
+    ##define.NT_WEBSOURCEFILE(888)
+    ##define.NT_WEBMANAGEDCONTENTITEMLIST(889)
+    ##define.NT_WEBMANAGEDCONTENTITEM(890)
+    ##define.NT_WEBLISTDEF(892)
+    #
+    ##define.NT_HELPFILELIST(1300)
+    ##define.NT_HELPFILE(1301)
+    #
+    ##define.NT_PERSPECTIVE(1311)
+    ##define.NT_PERSPECTIVEFIELDLIST(1315)
+    ##define.NT_PERSPECTIVEVIEW(1317) // VSUH, 01.07.2012
+    #
+    ##define.NT_SERVICES(1320)
+    ##define.NT_SERVICE(1321)
+    ##define.NT_OPERATIONS(1322)
+    ##define.NT_OPERATION(1323)
+    ##define.NT_SERVICE_GROUPS(1324)
+    ##define.NT_SERVICE_GROUP(1325)
+    ##define.NT_SERVICE_NODE_REFERENCE(1326)
+    #
+    #
+    ##define.NT_WORKFLOWTEMPLATE(1412)
+    ##define.NT_WORKFLOWTEMPLATEELEMENT(1414) // VSUH, 06.09.2020
+    ##define.NT_WORKFLOWTEMPLATELINEITEM(1405) // VSUH, 06.09.2020
+    ##define.NT_WORKFLOWTASK(1417)
+    ##define.NT_WORKFLOWAPPROVAL(1421)
+    ##define.NT_WORKFLOWCATEGORY(1423)
+    ##define.NT_REPORTLIBRARY(1426)
+    ##define.NT_WORKFLOWAUTOMATEDTASK(1409)
+    ##define.NT_WORKFLOW_HIERARCHYPROVIDER(1397)
+    ##define.NT_WORKFLOW_HIERARCHYPROVIDERWORKFLOWTEMPLATE(1394) // VSUH, 06.09.2020
+    ##define.NT_WORKFLOW_PARTICIPANTPROVIDERLIST(1398)
+    ##define.NT_WORKFLOW_PARTICIPANTPROVIDER(1399)
+    ##define.NT_WORKFLOW_QUEUEPROVIDER(1401)
+    ##define.NT_WORKFLOW_DUEDATEPROVIDER(1403)
+    #
+    ##define.NT_INFOPARTLIST(1428)
+    ##define.NT_INFOPART(1429)
+    ##define.NT_FORMPART(1431)
+    #
+    ##define.NT_SSRSREPORTS(1438)
+    ##define.NT_SSRSREPORT(1439)
+    #
+    ##define.NT_SSRSREPORTDESIGN(1457)
+    ##define.NT_SSRSREPORT(1439)
+    ##define.NT_DOCSET(1527)
+    ##define.NT_DBTYPETABLEREFERENCES(1547)
+    ##define.NT_DBTYPEFILTER(1548)
+    #
+    ##define.NT_SECTASKNODE(1501)
+    ##define.NT_SECTASKMENUITEMLISTNODE(1502)
+    ##define.NT_SECTASKMENUITEMNODE(1503)
+    ##define.NT_SECTASKFORMLISTNODE(1504)
+    ##define.NT_SECTASKFORMNODE(1505)
+    ##define.NT_SECTASKFORMCONTROLNODE(1506)
+    ##define.NT_SECTASKTABLELISTNODE(1507)
+    ##define.NT_SECTASKTABLENODE(1508)
+    ##define.NT_SECTASKFIELDNODE(1509)
+    ##define.NT_SECTASKMETHODLISTNODE(1510)
+    ##define.NT_SECTASKMETHODNODE(1511)
+    ##define.NT_SECTASKSERVICELISTNODE(1512)
+    ##define.NT_SECTASKSERVICENODE(1513)
+    ##define.NT_SECTASKDEPENDENTLISTNODE(1514)
+    ##define.NT_SECTASKDEPENDENTNODE(1515)
+    ##define.NT_SECTASKCONTROLNODE(1516)
+    ##define.NT_SECTASKWEBMENUITEMLISTNODE(1517)
+    ##define.NT_SECTASKWEBMENUITEMNODE(1518)
+    ##define.NT_SECTASKWEBCONTENTLISTNODE(1519)
+    ##define.NT_SECTASKWEBCONTENTNODE(1520)
+    #
+    ##define.NT_SECPERMISSIONGROUPLISTNODE(1600)
+    ##define.NT_SECPERMISSIONLISTNODE(1601)
+    ##define.NT_SECASSOCIATEDFORMLISTNODE(1602)
+    ##define.NT_SECASSOCIATEDFORMNODE(1603)
+    ##define.NT_SECASSOCIATEDWEBCONTROLLISTNODE(1604)
+    ##define.NT_SECASSOCIATEDWEBCONTROLNODE(1605)
+    ##define.NT_SECASSOCIATEDOBJECTLISTNODE(1606)
+    ##define.NT_SECCODEPERMISSIONLISTNODE(1607)
+    ##define.NT_SECCODEPERMISSIONNODE(1608)
+    ##define.NT_SECASSOCIATEDCODELISTNODE(1609)
+    ##define.NT_SECASSOCIATEDCODENODE(1610)
+    ##define.NT_SECASSOCIATEDREPORTLISTNODE(1611)
+    ##define.NT_SECASSOCIATEDREPORTNODE(1612)
+    ##define.NT_SECENTRYPOINTLISTNODE(1613)
+    ##define.NT_SECENTRYPOINTNODE(1614)
+    #
+    ##define.NT_SECPOLICYNODE              (1619)
+    ##define.NT_SECPOLICYLISTNODE          (1620)
+    ##define.NT_SECCONSTRAINEDTABLENODE    (1621)
+    ##define.NT_SECCONSTRAINEDTABLELISTNODE(1622)
+    ##define.NT_SECPOLICYQUERYNODE         (1623)
+    ##define.NT_SECALLTABLES               (1624)
+    ##define.NT_SECSINGLETABLE             (1625)
+    ##define.NT_SECROLENODE(1626)
+    ##define.NT_SECROLELISTNODE(1627)
+    ##define.NT_SECPRIVILEGENODE(1628)
+    ##define.NT_SECPRIVILEGELISTNODE(1629)
+    ##define.NT_SECDUTYNODE(1630)
+    ##define.NT_SECDUTYLISTNODE(1631)
+    ##define.NT_SECPRIVILEGEREFERENCENODE(1632)
+    ##define.NT_SECPRIVILEGEREFERENCELISTNODE(1633)
+    ##define.NT_SECDUTYREFERENCENODE(1634)
+    ##define.NT_SECDUTYREFERENCELISTNODE(1635)
+    ##define.NT_SECPROCESSCYCLENODE(1636)
+    ##define.NT_SECPROCESSCYCLELISTNODE(1637)
+    ##define.NT_SECPOLICYREFERENCENODE(1638)
+    ##define.NT_SECPOLICYREFERENCELISTNODE(1639)
+    ##define.NT_SECROLEREFERENCELISTNODE(1640)
+    ##define.NT_SECROLEREFERENCENODE(1641)
+    ##define.NT_SECCONSTRAINEDVIEWNODE    (1642)
+    #
+    ##define.NT_VSPROJECTS(1530)
+    ##define.NT_VSPROJECT(1531)
+    ##define.NT_VSPROJECTFOLDER(1532)
+    ##define.NT_VSPROJECTFILE(1533)
+    ##define.NT_VSPROJECTTYPE(1534)
+    ##define.NT_VSPROJECTLINK(1535)
+    #
+    ##define.NT_CUE(1543)
+    ##define.NT_CUE_GROUP(1544)
+    ##define.NT_CUE_GROUPCUE(1545)  // VSUH, 01.07.2012
+    #
+    ##define.NT_AKFK(1551)
+    #
+    ##define.NT_INFOPART_GROUP(1432)
+    ##define.NT_INFOPART_FIELD(1434)
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{BDEF3D65-C5AA-430E-9F52-46541F555436}
+  ENDPROPERTIES
+  
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: SysOpenNewWindowAOTNode выгружен
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #SysOpenNewWindowAOTNode
+    PROPERTIES
+      Name                #SysOpenNewWindowAOTNode
+      Extends             #SysOpenNewWindowApplObject
+      Origin              #{C5725E0E-0E06-41D7-B169-51B100CF68AD}
+      LegacyId            #50004
+    ENDPROPERTIES
+    
+    METHODS
+      SOURCE #classDeclaration
+        #// VSUH, Класс, открывающий используемый элемент 15.11.2005
+        #class SysOpenNewWindowAOTNode extends SysOpenNewWindowApplObject
+        #{
+        #}
+      ENDSOURCE
+      SOURCE #runsysContextMenu
+        #void runsysContextMenu(SysContextMenu _sysContextMenu)
+        #{
+        #    TreeNode aNode = _sysContextMenu.first();
+        #    TreeNode treeNodeToOpen;
+        #
+        #    while (aNode)    // only single....?!
+        #    {
+        #        treeNodeToOpen = this.usingTreeNode(aNode);
+        #
+        #        if (!treeNodeToOpen)
+        #        {
+        #            treeNodeToOpen = aNode;
+        #        }
+        #        treeNodeToOpen.AOTnewWindow();
+        #
+        #        aNode = _sysContextMenu.next();
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #usingTreeNode
+        #TreeNode usingTreeNode(TreeNode _treeNode)
+        #{
+        #    TreeNode ret;
+        #
+        #    ret = SysOpenNewWindowAOTNode::getUsedByNode(_treeNode);
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #findNode
+        #// VSUH, Поиск узла по пути и типу узла (для нахождения узлов с одинаковыми именами) 17.11.2005
+        #static TreeNode findNode(str _path, int _nodeType = 0)
+        #{
+        #    TreeNode     treeNode, treeNodeParent, treeNodeChild;
+        #    TreeNodeIterator it;
+        #    ;
+        #
+        #    treeNode = TreeNode::findNode(_path);
+        #    if (_nodeType && treeNode.treeNodeType().id() != _nodeType)
+        #    {
+        #        treeNodeParent = treeNode.AOTparent();
+        #        it = treeNodeParent.AOTiterator();
+        #        treeNodeChild = it.next();
+        #        while (treeNodeChild)
+        #        {
+        #            if (treeNodeChild.treeNodeName() == treeNode.treeNodeName() &&
+        #                treeNodeChild.treeNodeType().id()  == _nodeType)
+        #            {
+        #                treeNode = treeNodeChild;
+        #                break;
+        #            }
+        #            treeNodeChild = it.next();
+        #        }
+        #    }
+        #    return treeNode;
+        #}
+      ENDSOURCE
+      SOURCE #findOrOpenAOTWindow
+        #// VSUH Поиск или открытие окна AOT
+        #public static void findOrOpenAOTWindow(TreeNode _node)
+        #{
+        #    HWND AxClient, AxChild;
+        #    ;
+        #    AxClient = WinApi::findWindowEx(infolog.hWnd(), 0, "MDIClient", "");
+        #    AxChild = WinApi::findWindowEx(AxClient, nullvalue(AxChild), "", _node.treeNodePath());
+        #    if (AxChild != 0)
+        #    {
+        #        infolog.activateWindow(AxChild);
+        #    }
+        #    else
+        #    {
+        #        _node.AOTnewWindow();
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #findSSRSModelProject
+        #private static container findSSRSModelProject(str _ssrsReportName)
+        #{
+        #    TreeNode treeNode;
+        #    VSProjectNode projectNode;
+        #    container reportReferences;
+        #    VSProjectFileNode projectFileNode;
+        #    str source, xpath, reportReference;
+        #    int pos, len;
+        #
+        #    System.IO.StringReader reader;
+        #    System.Xml.XPath.XPathDocument doc;
+        #    System.Xml.XPath.XPathNavigator navigator, nodeNavigator;
+        #    System.Xml.XPath.XPathExpression expression;
+        #    System.Xml.XPath.XPathNodeIterator nodeIterator;
+        #    System.Xml.XmlNamespaceManager namespaceManager;
+        #    #AOT
+        #
+        #    // Key is VSProjectNode
+        #    // Value is Set of strings - AOT paths to the SSRS reports used in the project
+        #
+        #    treeNode = TreeNode::findNode(#VSProjectsAXModelPath);
+        #    if (treeNode)
+        #    {
+        #        projectNode = treeNode.AOTfirstChild();
+        #        while (projectNode)
+        #        {
+        #            // check for the Project node, the Project Content node and a project file node
+        #            if (projectNode && projectNode.aoTfirstChild() && projectNode.aoTfirstChild().AOTfirstChild())
+        #            {
+        #                projectFileNode = projectNode.aoTfirstChild().AOTfirstChild();
+        #                source = projectFileNode.AOTgetSource();
+        #                len = strLen(source);
+        #                if (len)
+        #                {
+        #                    // remove any unwanted characters from the beginning of the string
+        #                    pos = strFind(source, @"<", 1, len);
+        #                    if (source && pos)
+        #                    {
+        #                        source = subStr(source, pos, len);
+        #                    }
+        #
+        #                    if (source)
+        #                    {
+        #                        // load the source into an XPathDocument object and find all report references using xpath select
+        #                        reader = new System.IO.StringReader(source);
+        #                        doc = new System.Xml.XPath.XPathDocument(reader);
+        #                        navigator = doc.CreateNavigator();
+        #
+        #                        namespaceManager = new System.Xml.XmlNamespaceManager(navigator.get_NameTable());
+        #                        namespaceManager.AddNamespace(@"msbuild", @"http://schemas.microsoft.com/developer/msbuild/2003");
+        #
+        #                        xpath = @"//msbuild:Project/msbuild:ItemGroup/msbuild:Compile/@Include";
+        #                        expression = System.Xml.XPath.XPathExpression::Compile(xpath);
+        #                        expression.SetContext(namespaceManager);
+        #
+        #                        nodeIterator = navigator.Select(expression);
+        #                        if (nodeIterator)
+        #                        {
+        #                            while (nodeIterator.MoveNext())
+        #                            {
+        #                                nodeNavigator = nodeIterator.get_Current();
+        #                                reportReference = nodeNavigator.get_Value();
+        #
+        #                                if (reportReference && reportReference == _ssrsReportName)
+        #                                {
+        #                                    reportReferences += projectNode.treeNodePath();
+        #                                }
+        #                            }
+        #                        }
+        #                    }
+        #                }
+        #            }
+        #            projectNode = projectNode.aoTnextSibling();
+        #        }
+        #    }
+        #    return reportReferences;
+        #}
+      ENDSOURCE
+      SOURCE #getUsedByNode
+        #// VSUH Открыть используемую ... (форму, класс и т.д.) Возвращает NULL, если нет соотв узла в АОТ 24.04.2005
+        #public static TreeNode getUsedByNode(TreeNode _curNode)
+        #{
+        #    TreeNode             retNode, tmpNode;
+        #    TreeNodeName         treeNodeName;
+        #    str                  dsName;
+        #    str                  methodName;
+        #    str                  fieldName;
+        #    str                  groupName;
+        #    str                  typeName;
+        #    MenuFunction         menuFunction;
+        #    SysDictClass         dictClass;
+        #    SysDictField         dictField;
+        #    SysDictType          dictType, dictParentType;
+        #    SysDictEnum          dictEnum;
+        #    SysDictTable         dictTable;
+        #    DictSecurityKey      dictSecurityKey, parentSecurityKey;
+        #    DictConfigurationKey dictConfigKey,   parentConfigKey;
+        #    DictLicenseCode      dictLicenseCode, parentLicenseCode;
+        #    boolean              existParentParent;
+        #    int                  i;
+        #    container            nodes;
+        #    #TreeNodeSysNodeType
+        #    #Properties
+        #    #AOT
+        #    ;
+        #    //info(int2str(_curNode.treeNodeType().id()));
+        #    switch (_curNode.treeNodeType().id())
+        #    {
+        #        case #NT_MENUITEM:               // Menu item in Menu
+        #            retNode = TreeNode::findNode(#MenuItemsPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(),#PropertyMenuItemType)+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(),#PropertyMenuItemName));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #
+        #        case #NT_FORMFIELDLAYOUT:     // Formcontrol (MenuItem Button, *Edit, ComboBox, CheckBox, Grid, Group)
+        #            switch (true)
+        #            {
+        #                case match('<MenuItemButton\\:',_curNode.treeNodeName()):
+        #                    retNode = TreeNode::findNode(#MenuItemsPath+'\\' +
+        #                                                  findProperty(_curNode.AOTgetProperties(),#PropertyMenuItemType)+'\\' +
+        #                                                  findProperty(_curNode.AOTgetProperties(),#PropertyMenuItemName));
+        #                    break;
+        #                case match('<StringEdit\\:',_curNode.treeNodeName()):
+        #                case match('<RealEdit\\:',_curNode.treeNodeName()):
+        #                case match('<IntEdit\\:',_curNode.treeNodeName()):
+        #                case match('<DateEdit\\:',_curNode.treeNodeName()):
+        #                case match('<CheckBox\\:',_curNode.treeNodeName()):
+        #                case match('<ComboBox\\:',_curNode.treeNodeName()):
+        #                case match('<RadioButton\\:',_curNode.treeNodeName()):
+        #                case match('<\\[Grid\\:',_curNode.treeNodeName()):
+        #                case match('<\\[Group\\:',_curNode.treeNodeName()):
+        #                case match('<Window\\:',_curNode.treeNodeName()):
+        #                    treeNodeName = SysTreeNode::applObjectName(_curNode.treeNodePath());
+        #                    dsName = findProperty(_curNode.AOTgetProperties(), #PropertyDatasource);
+        #                    if (dsName)
+        #                    {
+        #                        fieldName = findProperty(_curNode.AOTgetProperties(), #PropertyDatafield);
+        #                        if (fieldName)
+        #                        {
+        #                            retNode = TreeNode::findNode(strfmt('%1\\%2\\Data Sources\\%3\\Fields\\%4', #FormsPath, treeNodeName, dsName, fieldName));
+        #                        }
+        #                        else
+        #                        {
+        #                            methodName = findProperty(_curNode.AOTgetProperties(), #PropertyDatamethod);
+        #                            if (methodName)
+        #                            {
+        #                                retNode = TreeNode::findNode(#FormsPath + '\\' + strFmt(#DataSourceMethodPath, treeNodeName, dsName, methodName));
+        #                                if (!retNode)
+        #                                {
+        #                                    retNode = TreeNode::findNode(strfmt('%1\\%2\\Data Sources\\%3', #FormsPath, treeNodeName, dsName));
+        #                                    retNode = SysOpenNewWindowAOTNode::getUsedByNode(retNode);
+        #                                    retNode = TreeNode::findNode(strfmt('%1%3\\%2', retNode.treeNodePath(), methodName, #MethodsPath));
+        #                                }
+        #                            }
+        #                            else
+        #                            {
+        #                                groupName = findProperty(_curNode.AOTgetProperties(), #PropertyDataGroup);
+        #                                if (groupName)
+        #                                {
+        #                                    retNode = SysOpenNewWindowAOTNode::findNode(strfmt('%1\\%2\\Data Sources\\%3\\Fields\\%4', #FormsPath, treeNodeName, dsName, groupName), #NT_FORMFIELDGROUP);
+        #                                    if (retNode)
+        #                                    {
+        #                                        retNode = SysOpenNewWindowAOTNode::getUsedByNode(retNode);
+        #                                    }
+        #                                }
+        #                                else
+        #                                {
+        #                                    retNode = TreeNode::findNode(strfmt('%1\\%2\\Data Sources\\%3', #FormsPath, treeNodeName, dsName));
+        #                                }
+        #                            }
+        #                        }
+        #                    }
+        #                    else
+        #                    {
+        #                        methodName = findProperty(_curNode.AOTgetProperties(), #PropertyDatamethod);
+        #                        if (methodName)
+        #                        {
+        #                            tmpNode = _curnode;
+        #                            do
+        #                            {
+        #                                retNode = TreeNode::findNode(strFmt(#MethodPath, tmpNode.treeNodePath(), methodName));
+        #                                if (retNode)
+        #                                {
+        #                                    break;
+        #                                }
+        #                                else
+        #                                {
+        #                                    tmpNode = tmpNode.AOTparent();
+        #                                    treeNodeName = SysTreeNode::applObjectName(tmpNode.treeNodePath());
+        #                                }
+        #                            }
+        #                            while (tmpNode.AOTparent().treeNodePath() != #AOTRootPath);
+        #                        }
+        #                        else
+        #                        {
+        #                            typeName = findProperty(_curNode.AOTgetProperties(), #PropertyExtendedDatatype);
+        #                            if (typeName)
+        #                            {
+        #                                retNode = TreeNode::findNode(#ExtendedDataTypesPath + '\\' + typeName);
+        #                                if (!retNode)
+        #                                {
+        #                                    retNode = TreeNode::findNode(#SystemTypesPath + '\\' + typeName);
+        #                                }
+        #                            }
+        #                            else
+        #                            {
+        #                                typeName = findProperty(_curNode.AOTgetProperties(), #PropertyEnumtype);
+        #                                if (typeName)
+        #                                {
+        #                                    retNode = TreeNode::findNode(#BaseEnumsPath + '\\' + typeName);
+        #                                    if (!retNode)
+        #                                    {
+        #                                        retNode = TreeNode::findNode(#SystemEnumsPath + '\\' + typeName);
+        #                                    }
+        #                                }
+        #                            }
+        #                        }
+        #                    }
+        #                    break;
+        #            }
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_FUNCITEM:
+        #            menuFunction = _curNode;
+        #            if (menuFunction.objectType() == UtilElementType::Class &&    // Class
+        #                menuFunction.object())
+        #            {
+        #                retNode = TreeNode::findNode(#ClassesPath+'\\'+menuFunction.object());
+        #            }
+        #            if (menuFunction.objectType() == UtilElementType::Form &&    // Form
+        #                menuFunction.object())
+        #            {
+        #                retNode = TreeNode::findNode(#FormsPath+'\\'+menuFunction.object());
+        #            }
+        #            if (menuFunction.objectType() == UtilElementType::Report &&    // Report
+        #                menuFunction.object())
+        #            {
+        #                retNode = TreeNode::findNode(#ReportsPath+'\\'+menuFunction.object());
+        #            }
+        #            if (menuFunction.objectType() == UtilElementType::Job  &&    // Job
+        #                menuFunction.object())
+        #            {
+        #                retNode = TreeNode::findNode(#JobsPath+'\\'+menuFunction.object());
+        #            }
+        #            if (menuFunction.objectType() == UtilElementType::Query  &&    // Query
+        #                menuFunction.object())
+        #            {
+        #                retNode = TreeNode::findNode(#QueriesPath+'\\'+menuFunction.object());
+        #            }
+        #            if (menuFunction.objectType() == UtilElementType::InfoPart  &&    // InfoPart
+        #                menuFunction.object())
+        #            {
+        #                retNode = TreeNode::findNode(#InfoPartsPath+'\\'+menuFunction.object());
+        #            }
+        #            if (menuFunction.objectType() == UtilElementType::FormPart  &&    // FormPart
+        #                menuFunction.object())
+        #            {
+        #                retNode = TreeNode::findNode(#FormPartsPath+'\\'+menuFunction.object());
+        #            }
+        #            if (menuFunction.objectType() == UtilElementType::CueGroup  &&    // CueGroup
+        #                menuFunction.object())
+        #            {
+        #                retNode = TreeNode::findNode(#CueGroupsPath+'\\'+menuFunction.object());
+        #            }
+        #            if (menuFunction.objectType() == UtilElementType::SSRSReport  &&    // SSRSReport
+        #                menuFunction.object())
+        #            {
+        #                retNode = TreeNode::findNode(#SSRSReportsPath+'\\'+menuFunction.object());
+        #            }
+        #            break;
+        #        case #NT_CLASS:     // Class - open the parent
+        #            dictClass = new SysDictClass(_curNode.applObjectId());
+        #            if (dictClass && dictClass.extend())
+        #            {
+        #                dictClass = new SysDictClass(dictClass.extend());
+        #                if (dictClass)
+        #                {
+        #                    retNode = TreeNode::findNode(#ClassesPath+'\\'+dictClass.name());
+        #                    if (!retNode)
+        #                    {
+        #                        retNode = TreeNode::findNode(#SystemClassesPath + '\\' + dictClass.name());
+        #                    }
+        #                }
+        #            }
+        #            break;
+        #        case #NT_DBMAPPING:                     // Table for Mapped Table
+        #            retNode = TreeNode::findNode(#TablesPath+'\\'+_curNode.treeNodeName());
+        #            break;
+        #        case #NT_FORMDATAFIELD, #NT_QEDBFIELD:  // Table Field for Form or Query DataSource Field
+        #            tmpNode = SysOpenNewWindowAOTNode::getUsedByNode(_curNode.AOTparent().AOTparent()); // AOTPath to Table
+        #            if (tmpNode)
+        #            {
+        #                retNode = TreeNode::findNode(tmpNode.treeNodePath() + '\\' + _curNode.AOTparent().AOTname() + '\\' + _curNode.AOTname()); // AOTPath to table field
+        #                if (!retNode)
+        #                {
+        #                    retNode = TreeNode::findNode(tmpNode.treeNodePath() + '\\' + _curNode.AOTname()); // AOTPath to table field
+        #                }
+        #            }
+        #            break;
+        #        case #NT_FORMFIELDGROUP:    // Table Group for Form DataSource Group
+        #            retNode = SysOpenNewWindowAOTNode::getUsedByNode(_curNode.AOTparent().AOTparent()); // AOTPath to Table
+        #            retNode = TreeNode::findNode(retNode.treeNodePath() + '\\Field Groups\\' + _curNode.AOTname()); // AOTPath to table field
+        #            break;
+        #        case #allFields:            // EDT for Table Field
+        #            dictField = SysDictField::newTreeNode(_curNode);
+        #            if (dictField)
+        #            {
+        #                dictType = new SysDictType(dictField.typeId());
+        #                if (!dictType)
+        #                {
+        #                    dictEnum = new SysDictEnum(dictField.enumId());
+        #                }
+        #                if (dictType)
+        #                {
+        #                    retNode = dictType.treeNode();
+        #                }
+        #                if (dictEnum)
+        #                {
+        #                    retNode = dictEnum.treeNode();
+        #                }
+        #            }
+        #            break;
+        #
+        #        case #allExtendedDataTypes:   // EDT (or Base Enum) - parent
+        #            dictType = SysDictType::newTreeNode(_curNode);
+        #            if (dictType)
+        #            {
+        #                dictParentType = new SysDictType(dictType.extend());
+        #                if (!dictParentType)
+        #                {
+        #                    dictEnum = new SysDictEnum(dictType.enumId());
+        #                }
+        #                if (dictParentType)
+        #                {
+        #                    retNode = dictParentType.treeNode();
+        #                }
+        #                if (dictEnum)
+        #                {
+        #                    retNode = dictEnum.treeNode();
+        #                }
+        #            }
+        #            break;
+        #        case #NT_DBTABLE:
+        #            dictTable = SysDictTable::newTreeNode(_curNode); // Parent in inheritance
+        #            if (dictTable.supportInheritance())
+        #            {
+        #                retNode = TreeNode::findNode(#TablesPath+'\\'+tableId2Name(dictTable.extends()));
+        #            }
+        #            if (!retNode && dictTable && dictTable.formRef()) // FormRef for Table
+        #            {
+        #                retNode = TreeNode::findNode(#MenuItemsDisplayPath+'\\'+dictTable.formRef());
+        #            }
+        #            break;
+        #        case #NT_SECURITYKEY:      // Security Key - parent or Configuration key
+        #            dictSecurityKey = new DictSecurityKey(_curNode.applObjectId());
+        #            if (dictSecurityKey.parentSecurityKeyId())
+        #            {
+        #                parentSecurityKey = new DictSecurityKey(dictSecurityKey.parentSecurityKeyId());
+        #                retNode = TreeNode::findNode(#SecurityKeysPath + '\\' +parentSecurityKey.name());
+        #            }
+        #            if (dictSecurityKey.configurationKeyId())
+        #            {
+        #                parentConfigKey = new DictConfigurationKey(dictSecurityKey.configurationKeyId());
+        #                retNode = TreeNode::findNode(#ConfigurationKeysPath + '\\' + parentConfigKey.name());
+        #            }
+        #            break;
+        #        case #NT_CONFIGURATIONKEY:  // Configuration key - parent or License Code
+        #            dictConfigKey = new DictConfigurationKey(_curNode.applObjectId());
+        #            if (dictConfigKey.parentConfigurationKeyId())
+        #            {
+        #                parentConfigKey = new DictConfigurationKey(dictConfigKey.parentConfigurationKeyId());
+        #                retNode = TreeNode::findNode(#ConfigurationKeysPath + '\\' + parentConfigKey.name());
+        #            }
+        #            if (dictConfigKey.licenseCode())
+        #            {
+        #                parentLicenseCode = new DictLicenseCode(dictConfigKey.licenseCode());
+        #                retNode = TreeNode::findNode(#LicenseCodesPath + '\\' + parentLicenseCode.name());
+        #            }
+        #            break;
+        #        case #SysNodeTypeSystemType:  // EDT is a System Type
+        #            dictTable = new DictTable(tablename2id(_curNode.AOTparent().AOTname()));
+        #            if (dictTable)
+        #            {
+        #                dictField = new DictField(dictTable.id(), dictTable.fieldName2Id(_curNode.AOTname()));
+        #                if (dictField)
+        #                {
+        #                    dictType = new DictType(dictField.typeId());
+        #                    if (dictType)
+        #                    {
+        #                        retNode = TreeNode::findNode(#SystemTypesPath + '\\' + dictType.name());
+        #                    }
+        #                }
+        #            }
+        #            break;
+        #        case #NT_SIMPLE_FIELD:  // Field in Table Index
+        #            retNode = TreeNode::findNode(_curNode.AOTparent().AOTparent().AOTparent().treeNodePath() + '\\Fields\\' + _curNode.AOTname());
+        #            break;
+        #        case #NT_QEDELIMITER, #NT_QEORDERTARGET: // Field in Query Range or Query Sort Index
+        #            retNode = TreeNode::findNode(SysOpenNewWindowAOTNode::getUsedByNode(_curNode.AOTparent().AOTparent()).treeNodePath() + '\\Fields\\' + _curNode.AOTname());
+        #            break;
+        #        case #TreeNodeTypeFormParts, #NT_CUE:
+        #            retNode = TreeNode::findNode(#MenuItemsDisplayPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyMenuItemName));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_SECASSOCIATEDFORMNODE, #NT_FORMPART:
+        #            retNode = TreeNode::findNode(#FormsPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyForm));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_CUE_GROUPCUE:
+        #            retNode = TreeNode::findNode(#CuesPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyCue));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_SERVICE_NODE_REFERENCE:
+        #            retNode = TreeNode::findNode(#ServicesPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyService));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_SERVICE:
+        #            retNode = TreeNode::findNode(#ClassesPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyClass));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_OPERATION:
+        #            retNode = TreeNode::findNode(#ClassesPath+'\\' +
+        #                                          findProperty(_curNode.AOTparent().AOTparent().AOTgetProperties(), #PropertyClass) + '\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyMethod));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_PERSPECTIVEVIEW:
+        #            retNode = TreeNode::findNode(#ViewsPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyView));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #TreeNodeTypeWebWebMenusLink:               // Web menu item in WebMenu
+        #            switch (findProperty(_curNode.AOTgetProperties(), #PropertyMenuItemType))
+        #            {
+        #                case 'Url':
+        #                    retNode = TreeNode::findNode(#WebMenuItemsUrlPath+'\\' +
+        #                                                  findProperty(_curNode.AOTgetProperties(),#PropertyMenuItemName));
+        #
+        #                    break;
+        #                case 'Action':
+        #                    retNode = TreeNode::findNode(#WebMenuItemsActionPath+'\\' +
+        #                                                  findProperty(_curNode.AOTgetProperties(),#PropertyMenuItemName));
+        #
+        #                    break;
+        #            }
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_WEBMANAGEDCONTENTITEM:
+        #            retNode = TreeNode::findNode(#WebControlsPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyObject));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_WEBACTIONITEM:
+        #            switch (findProperty(_curNode.AOTgetProperties(), #PropertyObjectType))
+        #            {
+        #                case 'Class':
+        #                    retNode = TreeNode::findNode(#ClassesPath+'\\' +
+        #                                                  findProperty(_curNode.AOTgetProperties(),#PropertyObject));
+        #
+        #                    break;
+        #                case 'Job':
+        #                    retNode = TreeNode::findNode(#JobsPath+'\\' +
+        #                                                  findProperty(_curNode.AOTgetProperties(),#PropertyObject));
+        #
+        #                    break;
+        #            }
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_SECCODEPERMISSIONNODE:
+        #            retNode = TreeNode::findNode(#ClassesPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyClass) + '\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyMethod));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_SECPOLICYNODE:
+        #            retNode = TreeNode::findNode(#QueriesPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyQuery));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_SECASSOCIATEDREPORTNODE:
+        #            retNode = TreeNode::findNode(#SSRSReportsPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyName));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_SECPRIVILEGEREFERENCENODE:
+        #            retNode = TreeNode::findNode(#SecPrivilegesPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyName));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_SECDUTYREFERENCENODE:
+        #            retNode = TreeNode::findNode(#SecDutiesPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyName));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_SECENTRYPOINTNODE:
+        #            switch (findProperty(_curNode.AOTgetProperties(), #PropertyObjectType))
+        #            {
+        #                case 'MenuItemDisplay':
+        #                    retNode = TreeNode::findNode(#MenuItemsDisplayPath+'\\' +
+        #                                                  findProperty(_curNode.AOTgetProperties(),#PropertyObjectName));
+        #
+        #                    break;
+        #                case 'MenuItemOutput':
+        #                    retNode = TreeNode::findNode(#MenuItemsOutputPath+'\\' +
+        #                                                  findProperty(_curNode.AOTgetProperties(),#PropertyObjectName));
+        #
+        #                    break;
+        #                case 'MenuItemAction':
+        #                    retNode = TreeNode::findNode(#MenuItemsActionPath+'\\' +
+        #                                                  findProperty(_curNode.AOTgetProperties(),#PropertyObjectName));
+        #
+        #                    break;
+        #                case 'ServiceOperation':
+        #                    retNode = TreeNode::findNode(strFmt(#ServiceOperationPath,
+        #                                                  findProperty(_curNode.AOTgetProperties(),#PropertyObjectName),
+        #                                                  findProperty(_curNode.AOTgetProperties(),#PropertyObjectChildName)));
+        #
+        #                    break;
+        #                case 'WebActionItem':
+        #                    retNode = TreeNode::findNode(#WebMenuItemsActionPath+'\\' +
+        #                                                  findProperty(_curNode.AOTgetProperties(),#PropertyObjectName));
+        #
+        #                    break;
+        #                case 'WebUrlItem':
+        #                    retNode = TreeNode::findNode(#WebMenuItemsUrlPath+'\\' +
+        #                                                  findProperty(_curNode.AOTgetProperties(),#PropertyObjectName));
+        #
+        #                    break;
+        #                case 'WebManagedContent':
+        #                    retNode = TreeNode::findNode(#WebContentItemsManagedPath+'\\' +
+        #                                                  findProperty(_curNode.AOTgetProperties(),#PropertyObjectName));
+        #
+        #                    break;
+        #            }
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_SSRSREPORT:
+        #            retNode = TreeNode::findNode(#SSRSReportsPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyName));
+        #            if (retNode)
+        #            {
+        #                nodes = SysOpenNewWindowAOTNode::findSSRSModelProject(retNode.treeNodePath());
+        #                for (i = 2; i <= conLen(nodes); i++)
+        #                {
+        #                    SysOpenNewWindowAOTNode::findOrOpenAOTWindow(TreeNode::findNode(conPeek(nodes, i)));
+        #                }
+        #                retNode = TreeNode::findNode(conPeek(nodes, 1));
+        #            }
+        #            break;
+        #        case #NT_QE:
+        #            retNode = TreeNode::findNode(#QueriesPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyName));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_WORKFLOWTEMPLATEELEMENT:
+        #            switch (findProperty(_curNode.AOTgetProperties(), #PropertyWorkflowOutcomeType))
+        #            {
+        #                case 'Approval':
+        #                    retNode = TreeNode::findNode(#WorkflowApprovalTasksPath+'\\' +
+        #                                                  findProperty(_curNode.AOTgetProperties(), #PropertyName));
+        #                    break;
+        #                case 'Task':
+        #                    retNode = TreeNode::findNode(#WorkflowTasksPath+'\\' +
+        #                                                  findProperty(_curNode.AOTgetProperties(), #PropertyName));
+        #                    break;
+        #                case 'AutomatedTask':
+        #                    retNode = TreeNode::findNode(#WorkflowAutomatedTasksPath+'\\' +
+        #                                                  findProperty(_curNode.AOTgetProperties(), #PropertyName));
+        #                    break;
+        #            }
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_WORKFLOWTEMPLATELINEITEM:
+        #            retNode = TreeNode::findNode(#WorkflowTypesPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyWorkflowLineItemWorkflowType));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_WORKFLOW_HIERARCHYPROVIDER,
+        #             #NT_WORKFLOW_PARTICIPANTPROVIDER,
+        #             #NT_WORKFLOW_QUEUEPROVIDER,
+        #             #NT_WORKFLOW_DUEDATEPROVIDER:
+        #            retNode = TreeNode::findNode(#ClassesPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyWorkflowProviderClass));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #        case #NT_WORKFLOW_HIERARCHYPROVIDERWORKFLOWTEMPLATE:
+        #            retNode = TreeNode::findNode(#WorkflowTypesPath+'\\' +
+        #                                          findProperty(_curNode.AOTgetProperties(), #PropertyWorkflowProviderWorkflowType));
+        #            if (retNode)
+        #            {
+        #                existParentParent = true;
+        #            }
+        #            break;
+        #    }
+        #    // Any other property sheet type having a Table...
+        #    if (!retNode &&
+        #        findProperty(_curNode.AOTgetProperties(),#PropertyTable))
+        #    {
+        #        retNode = TreeNode::findNode(#TablesPath+'\\'+findProperty(_curNode.AOTgetProperties(),#PropertyTable));
+        #        if (!retNode)
+        #        {
+        #            retNode = TreeNode::findNode(#SystemTablesPath+'\\'+findProperty(_curNode.AOTgetProperties(),#PropertyTable));
+        #        }
+        #        if (!retNode)
+        #        {
+        #            retNode = TreeNode::findNode(#ViewsPath+'\\'+findProperty(_curNode.AOTgetProperties(),#PropertyTable));
+        #        }
+        #    }
+        #    if (!retNode &&
+        #        findProperty(_curNode.AOTgetProperties(),#PropertyTableOrView))
+        #    {
+        #        retNode = TreeNode::findNode(#TablesPath+'\\'+findProperty(_curNode.AOTgetProperties(),#PropertyTableOrView));
+        #        if (!retNode)
+        #        {
+        #            retNode = TreeNode::findNode(#SystemTablesPath+'\\'+findProperty(_curNode.AOTgetProperties(),#PropertyTableOrView));
+        #        }
+        #        if (!retNode)
+        #        {
+        #            retNode = TreeNode::findNode(#ViewsPath+'\\'+findProperty(_curNode.AOTgetProperties(),#PropertyTableOrView));
+        #        }
+        #    }
+        #    return retNode;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #main
+        #static void main(Args _args)
+        #{
+        #    SysOpenNewWindowApplObject sysOpenNewWindowApplObject = new SysOpenNewWindowAOTNode();
+        #    ;
+        #    if (SysContextMenu::startedFrom(_args))
+        #    {
+        #        sysOpenNewWindowApplObject.runsysContextMenu(_args.parmObject());
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #verifyItem
+        #static boolean verifyItem(SysContextMenu _sysContextMenu)
+        #{
+        #    if (new SysOpenNewWindowAOTNode().usingTreeNode(_sysContextMenu.first()))
+        #    {
+        #        return true;
+        #    }
+        #    return false;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: PRN
+
+; Microsoft Dynamics AX Project : SysOpenNewWindowAOTNode unloaded
+; --------------------------------------------------------------------------------
+  PROJECTVERSION 2
+  
+  PROJECT #SysOpenNewWindowAOTNode
+  SHARED
+  PROPERTIES
+    Name                #SysOpenNewWindowAOTNode
+    Origin              #{1E72DB01-0EB7-49A3-8DBA-C9B9CFC22AD0}
+  ENDPROPERTIES
+  
+    PROJECTCLASS ProjectNode
+    BEGINNODE
+      FILETYPE 0
+      UTILTYPE 3
+      UTILOBJECTID 0
+      NODETYPE 296
+      NAME #SysOpenNewWindowAOTNode
+    ENDNODE
+    BEGINNODE
+      FILETYPE 0
+      UTILTYPE 4
+      UTILOBJECTID 0
+      NODETYPE 218
+      NAME #TreeNodeSysNodeType
+    ENDNODE
+    BEGINNODE
+      FILETYPE 0
+      UTILTYPE 45
+      UTILOBJECTID 50004
+      NODETYPE 329
+      NAME #SysOpenNewWindowAOTNode
+    ENDNODE
+  ENDPROJECT
+  
+
+***Element: END
